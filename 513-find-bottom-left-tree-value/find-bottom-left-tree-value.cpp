@@ -11,17 +11,15 @@
  */
 class Solution {
 public:
-    void fun(map<int,vector<int>>&mp,int level,TreeNode* root){
+    void fun(map<int,vector<int>>&mp,TreeNode* root,int level){
         if(root==NULL) return;
         mp[level].push_back(root->val);
-        fun(mp,level+1,root->left);
-        fun(mp,level+1,root->right);
+        fun(mp,root->left,level+1);
+        fun(mp,root->right,level+1);
     }
     int findBottomLeftValue(TreeNode* root) {
         map<int,vector<int>>mp;
-        fun(mp,0,root);
-        map<int,vector<int>>::iterator it;
-        int n=mp.size();
-        return mp[n-1][0];
+        fun(mp,root,0);
+        return mp[mp.size()-1][0];
     }
 };
