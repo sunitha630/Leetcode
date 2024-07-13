@@ -1,22 +1,18 @@
 class Solution {
 public:
-    void generate(int n,vector<string>&res,string s,int open,int close){
-        if(s.size()==n*2){
+   vector<string>res;
+    void fun(int n,int oc,int cc,string s){
+        if(s.size()>=n*2){
             res.push_back(s);
             return;
         }
-        if(open<n) {
-        generate(n,res,s+"(",open+1,close);
+        else if(oc>cc){
+            fun(n,oc,cc+1,s+')');
         }
-        if(open>close) {
-        generate(n,res,s+")",open,close+1);
-        }
-        
+        if(oc<n) fun(n,oc+1,cc,s+'(');
     }
     vector<string> generateParenthesis(int n) {
-        vector<string>res;
-        if(n==0) return res;
-        generate(n,res,"(",1,0);
+        fun(n,1,0,"(");
         return res;
     }
 };
