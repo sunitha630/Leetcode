@@ -27,7 +27,7 @@ public:
                         g[i][j]=g[i-1][j]+g[i][j-1];
                     }
                 }
-                cout<<g[i][j]<<" ";
+               
             }
             cout<<endl;
         }
