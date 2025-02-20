@@ -1,29 +1,48 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 class Solution {
 public:
-    void recurse(bitset<32> &str, int n, vector<int> &vec, unordered_map<bitset<32>, int> &mp) {
-        if (mp.find(str) != mp.end()) {
-            return;
-        }
-        if (vec.size() == (1 << n)) return;
-        
-        vec.push_back(static_cast<int>(str.to_ulong()));
-        mp[str]++;
-
-        for (int i = 0; i < n; i++) {
-            str.flip(i); // Toggle the bit
-            recurse(str, n, vec, mp);
-            str.flip(i); // Restore original bit
-        }
-    }
-
+    int convert(string str){
+	int n=str.size();
+	int num=0,power=0;
+	for(int i=n-1;i>=0;i--){
+		if(str[i]=='1'){
+		num+=pow(2,power);
+	}
+		power++;
+	}
+	return num;
+}
+void recurse(string &str,int ind,int n,vector<string>&vec,unordered_map<string,int>&mp){
+	if(ind > pow(2,n)) return;
+	if(mp.find(str)!= mp.end()) return;
+	vec.push_back(str);
+	mp[str]++;
+	for(int i=0;i<n;i++){
+		if(str[i]=='0'){
+			str[i]='1';
+			recurse(str,ind+1,n,vec,mp);
+			str[i]='0';
+		}
+		else if(str[i]=='1'){
+			str[i]='0';
+			recurse(str,ind+1,n,vec,mp);
+			str[i]='1';
+		}
+		
+	}
+	
+}
     vector<int> grayCode(int n) {
-        vector<int> vec;
-        bitset<32> str; // Use a sufficiently large bitset
-        unordered_map<bitset<32>, int> mp;
-        recurse(str, n, vec, mp);
-        return vec;
+        vector<string>vec;
+	unordered_map<string,int>mp;
+	string str="";
+	vector<int>res;
+	for(int i=0;i<n;i++){
+		str+='0';
+	}
+	recurse(str,0,n,vec,mp);
+	for(int i=0;i<vec.size();i++){
+		res.push_back(convert(vec[i]));
+	}
+    return res;
     }
 };
