@@ -12,10 +12,9 @@ public:
             }
             else if(path[i]=='/'){
                if (!str.empty()) {
-            if (dot == 1 && str == ".") {
-                // Do nothing
+            if (dot==1 && str==".") {
             }
-            else if (dot == 2 && str == "..") {
+            else if (dot==2 && str=="..") {
                 if (!st.empty()) {
                     st.pop_back();
                 }
@@ -25,7 +24,7 @@ public:
             }
             str = "";
                 dot = 0;
-        }
+            }
             }
             else{
                 dot=0;
@@ -33,9 +32,9 @@ public:
             }
         }
        if (!str.empty()) {
-            if (dot == 1 && str == ".") {
+            if (dot==1 && str == ".") {
             }
-            else if (dot == 2 && str == "..") {
+            else if (dot== 2 && str == "..") {
                 if (!st.empty()) {
                     st.pop_back();
                 }
