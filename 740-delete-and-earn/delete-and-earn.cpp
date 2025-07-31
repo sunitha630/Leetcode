@@ -30,9 +30,7 @@ public:
                 dp[i]=dp[i-1]+(vec[i].first*vec[i].second);
             }
         }
-        for(int i=0;i<vec.size();i++){
-            cout<<dp[i]<<" ";
-        }
+       
         return dp[vec.size()-1];
     }
 };
