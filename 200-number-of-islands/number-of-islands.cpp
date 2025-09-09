@@ -1,7 +1,7 @@
 class Solution {
 public:
     void visit(vector<vector<char>> &grid,vector<vector<int>> &visited,int i,int j){
-            if(i >= grid.size() || j >= grid[i].size() || visited[i][j] || grid[i][j]=='0'){
+            if(i<0 || j<0 || i >= grid.size() || j >= grid[i].size() || visited[i][j] || grid[i][j]=='0'){
                 return;
             }
             visited[i][j]=1;
