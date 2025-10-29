@@ -8,7 +8,7 @@ public:
             n=n>>1;
         }
        
-        //cout<<cnt<<endl;
+       
         return pow(2,cnt)-1;
     }
 };
