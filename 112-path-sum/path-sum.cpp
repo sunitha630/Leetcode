@@ -11,24 +11,21 @@
  */
 class Solution {
 public:
-    int flag=0;
-    void fun(TreeNode* root,int t,int sum){
+    bool res=false;
+    void fun(TreeNode* root,int targetSum,int sum){
         if(root==NULL) return;
+        sum+=root->val;
         if(root->left==NULL && root->right==NULL){
-            if(t+root->val==sum){
-                flag=1;
+            if(sum==targetSum){
+                res=true;
+                return;
             }
-            cout<<t<<" "<<sum<<endl;
-            return;
         }
-        fun(root->left,t+root->val,sum);
-        fun(root->right,t+root->val,sum);   
+        fun(root->left,targetSum,sum);
+        fun(root->right,targetSum,sum);
     }
     bool hasPathSum(TreeNode* root, int targetSum) {
-        fun(root,0,targetSum);
-        if(flag==1){
-            return true;
-        }
-        return false;
+        fun(root,targetSum,0);
+        return res;
     }
 };
