@@ -11,20 +11,30 @@
  */
 class Solution {
 public:
-    void fun(TreeNode* root,map<int,vector<int>> &mp,int level){
-        if(root==NULL) return;
-        mp[level].push_back(root->val);
-        fun(root->left,mp,level+1);
-        fun(root->right,mp,level+1);
-    }
     vector<vector<int>> levelOrder(TreeNode* root) {
-        map<int,vector<int>>mp;
-        fun(root,mp,0);
-        map<int,vector<int>>::iterator it;
-        vector<vector<int>>res;
-        for(it=mp.begin();it!=mp.end();it++){
-            res.push_back(it->second);
+        vector<vector<int>>result;
+        if(root==NULL) return result;
+
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty()){
+            int size = q.size();
+            vector<int> level ;
+            for(int i=0;i<size;i++){
+                TreeNode* node = q.front();
+                level.push_back(node->val);
+
+                if(node->left!=NULL){
+                    q.push(node->left);
+                }
+                 if(node->right!=NULL){
+                    q.push(node->right);
+                }
+
+                q.pop(); //removes front node
+            }
+            result.push_back(level);
         }
-        return res;
+        return result;
     }
 };
