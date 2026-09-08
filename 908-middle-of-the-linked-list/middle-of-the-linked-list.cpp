@@ -11,18 +11,12 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
-        int size=0;
-        ListNode* dummy=head;
-        while(dummy!=NULL){
-            size++;
-            dummy=dummy->next;
+        ListNode* rabbit=head;
+        ListNode* tortoise=head;
+        while(rabbit!=NULL && rabbit->next!=NULL){
+            tortoise=tortoise->next;
+            rabbit=rabbit->next->next;
         }
-        int mid=size/2; //size - 6 mid 3
-        ListNode* dummy2=head;
-        for(int i=0;i<mid;i++){
-            dummy2=dummy2->next;
-        }
-        return dummy2;
-
+        return tortoise;
     }
 };
