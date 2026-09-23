@@ -3,7 +3,7 @@ int reverse(int x){
     int y=x;
     while(y)
     {
-        tem=tem*10+y%10;
+        tem=(tem*10)+y%10;
         y/=10;
     }
      if(tem>INT_MAX || tem<INT_MIN) return 0; 
