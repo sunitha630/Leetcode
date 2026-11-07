@@ -28,7 +28,7 @@ public:
             else{
                 return false;
             }
-            cout<<arr[i]<<" ";
+         
         }
         return true;
     }
