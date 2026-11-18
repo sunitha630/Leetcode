@@ -7,12 +7,10 @@ public:
         for(int i=0;i<nums.size();i++){
             if(vec[nums[i]]==0){
                 vec[nums[i]]=1;
-                num=max(num,nums[i]+1);
+                num=nums[i]+1;
             }
             else{
-                  while(vec[num] == 1) {
-                    num++;
-                }
+                 
                 vec[num]=1;
                 num++;
             }
